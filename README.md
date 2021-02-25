@@ -13,7 +13,7 @@ Descreva os objetivos do seu projeto e como ele funciona.
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
 ## Instalação
-**Linguagem**: xxxxxx<br>
+**Linguagem**: Java<br>
 **Framework**: (caso exista)<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
