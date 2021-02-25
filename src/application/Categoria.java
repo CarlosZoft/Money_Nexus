@@ -1,14 +1,15 @@
 package application;
+import java.time.LocalDate;
 
 public class Categoria {
 
     private String titulo;
-    private String descricao;
+    private LocalDate date;
     private double valor;
 
-    public Categoria(String titulo, String descricao, double valor) {
+    public Categoria(String titulo, double valor) {
         this.titulo = titulo;
-        this.descricao = descricao;
+        this.date = LocalDate.now();
         this.valor = valor;
     }
 
@@ -28,19 +29,15 @@ public class Categoria {
         this.titulo = titulo;
     }
 
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public LocalDate getDate() {
+        return date;
     }
 
     @Override
     public String toString() {
         return "Categoria{" +
                 "titulo='" + titulo + '\'' +
-                ", descricao='" + descricao + '\'' +
+                ", descricao='" + date + '\'' +
                 ", valor=" + valor +
                 '}';
     }
