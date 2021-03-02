@@ -10,7 +10,7 @@
 Descreva os objetivos do seu projeto e como ele funciona.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+Adicione 3 ou mais screenshots do projeto em funcionamento!
 
 ## Instalação
 **Linguagem**: Java<br>
