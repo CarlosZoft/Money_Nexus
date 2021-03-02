@@ -1,22 +1,9 @@
 package application;
 
-public class Economia {
+public class Economia extends Categoria {
 
-    private double valor;
-
-
-    @Override
-    public String toString() {
-        return "Saldo{" +
-                "valor=" + valor +
-                '}';
+    public Economia(String titulo,double valor) {
+        super(titulo, valor);
     }
 
-    public double getValor() {
-        return valor;
-    }
-
-    public void setValor(double valor) {
-        this.valor = valor;
-    }
 }
