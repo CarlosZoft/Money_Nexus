@@ -1,5 +1,6 @@
-package application;
+package application.Test;
 
+import application.Models.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.Scanner;
