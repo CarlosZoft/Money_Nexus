@@ -1,4 +1,6 @@
-package application;
+package application.Models;
+
+import application.Models.Categoria;
 
 public class Economia extends Categoria {
 
