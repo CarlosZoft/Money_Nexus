@@ -1,8 +1,6 @@
 package application.Models;
 
-
 public class Usuario {
-
     String nome;
 
     public void setNome(String nome) {
