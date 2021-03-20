@@ -1,8 +1,9 @@
 package application.Models;
 
-import application.Models.Categoria;
 
+// Herda class Categoria
 public class Divida extends Categoria {
+
     private int tipo;
 
     public Divida(String titulo, double valor, int tipo) {
