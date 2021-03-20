@@ -21,7 +21,7 @@ public class Main {
         Divida debito = new Divida(titulo, saldo, 1);
         Economia poupador = new Economia(titulo,saldo);
 
-        System.out.println("insira nome de usuario caso haja um caso não deixe em branco.");
+        System.out.println("insira nome de usuario caso exista um. Caso contrário, deixe em branco.");
         nome = palavra.nextLine();
         System.out.println("Seja bem vindo " + nome + ".");
         nUser.setNome(nome);
@@ -76,7 +76,7 @@ public class Main {
                     break;
 
                 case 5:
-                    System.out.println("Para qual finalidade será essa economia:");
+                    System.out.println("Para qual finalidade será esta economia:");
                         titulo = palavra.nextLine();
                     poupador.setTitulo(titulo);
                     System.out.println("qual o valor a ser atingido:");
@@ -86,7 +86,7 @@ public class Main {
                     break;
 
                 default:
-                    System.out.println("Desculpe mas sua opção está fora do intervalo de opções por favor tente de novo!");
+                    System.out.println("Desculpe mas sua opção está fora do intervalo de opções, por favor tente de novo!");
                     break;
             }
         }
