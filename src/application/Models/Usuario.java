@@ -1,5 +1,7 @@
 package application.Models;
 
+// Classe Usuario para possível login
+
 public class Usuario {
     String nome;
 
@@ -9,4 +11,5 @@ public class Usuario {
     public String getNome () {
         return nome;
     }
+
 }
