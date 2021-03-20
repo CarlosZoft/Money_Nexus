@@ -39,14 +39,6 @@ public class ControllerDividas {
         return aux;
     }
 
-    public ArrayList<LocalDate> getDates(){
-        ArrayList <LocalDate> aux = new ArrayList<LocalDate>();
-
-        for(int i = 0; i < this.getSize(); i++) {
-            aux.add(this.div.get(i).getDate());
-        }
-        return aux;
-    }
 
     public String getTitulo(int index) { return this.div.get(index).getTitulo(); }
 
@@ -56,8 +48,5 @@ public class ControllerDividas {
         return this.div.get(index).getValor();
     }
 
-    public LocalDate getDate(int index) {
-        return this.div.get(index).getDate();
-    }
 
 }

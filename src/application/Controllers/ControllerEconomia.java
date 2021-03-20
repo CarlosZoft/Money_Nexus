@@ -48,16 +48,7 @@ public class ControllerEconomia {
         return aux;
     }
 
-    public ArrayList<LocalDate> getDates(){
 
-        ArrayList <LocalDate> aux = new ArrayList<LocalDate>();
-
-        for(int i = 0; i < this.getSize(); i++) {
-            aux.add(this.Eco.get(i).getDate());
-        }
-
-        return aux;
-    }
 
     public String getTitulo(int index) {
         return this.Eco.get(index).getTitulo();
@@ -67,8 +58,5 @@ public class ControllerEconomia {
         return this.Eco.get(index).getValor();
     }
 
-    public LocalDate getDate(int index) {
-        return this.Eco.get(index).getDate();
-    }
 
 }

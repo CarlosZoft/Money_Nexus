@@ -47,16 +47,6 @@ public class ControllerSaldo {
         return aux;
     }
 
-    public ArrayList<LocalDate> getDates(){
-
-        ArrayList <LocalDate> aux = new ArrayList<LocalDate>();
-
-        for(int i = 0; i < this.getSize(); i++) {
-            aux.add(this.Sal.get(i).getDate());
-        }
-
-        return aux;
-    }
 
     public String getTitulo(int index) {
         return this.Sal.get(index).getTitulo();
@@ -66,8 +56,6 @@ public class ControllerSaldo {
         return this.Sal.get(index).getValor();
     }
 
-    public LocalDate getDate(int index) {
-        return this.Sal.get(index).getDate();
-    }
+
 
 }
