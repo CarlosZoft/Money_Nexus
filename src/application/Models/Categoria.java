@@ -1,15 +1,19 @@
 package application.Models;
-import java.time.LocalDate;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
+
+
+// Class Abstrata:
 public class Categoria {
 
     private String titulo;
-    private LocalDate date;
     private double valor;
+    private Date data =  new Date();// Composição:
 
     public Categoria(String titulo, double valor) {
         this.titulo = titulo;
-        this.date = LocalDate.now();
         this.valor = valor;
     }
 
@@ -29,15 +33,15 @@ public class Categoria {
         this.titulo = titulo;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getData() {
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        return dateFormat.format(this.data);
     }
 
     @Override
     public String toString() {
         return "Categoria{" +
                 "titulo='" + titulo + '\'' +
-                ", descricao='" + date + '\'' +
                 ", valor=" + valor +
                 '}';
     }
