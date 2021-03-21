@@ -6,7 +6,7 @@ import java.util.Date;
 
 
 // Class Abstrata:
-public class Categoria {
+public abstract class Categoria {
 
     private String titulo;
     private double valor;
@@ -16,7 +16,7 @@ public class Categoria {
         this.titulo = titulo;
         this.valor = valor;
     }
-
+    public Categoria() {}
     public double getValor() {
         return valor;
     }
@@ -40,8 +40,9 @@ public class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria{" +
+        return "Categoria {" +
                 "titulo='" + titulo + '\'' +
+                "Data=" + this.getData() +
                 ", valor=" + valor +
                 '}';
     }
