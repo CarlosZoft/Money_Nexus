@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="application.Views.main">
+  <grid id="27dc6" layout-manager="GridLayoutManager" row-count="2" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+    <margin top="0" left="0" bottom="0" right="0"/>
+    <constraints>
+      <xy x="20" y="20" width="720" height="480"/>
+    </constraints>
+    <properties>
+      <background color="-16777216"/>
+      <maximumSize width="1980" height="1080"/>
+      <minimumSize width="600" height="480"/>
+      <preferredSize width="720" height="480"/>
+    </properties>
+    <border type="none"/>
+    <children>
+      <component id="5ca76" class="javax.swing.JLabel">
+        <constraints>
+          <grid row="0" column="0" row-span="1" col-span="4" vsize-policy="0" hsize-policy="0" anchor="0" fill="0" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-4802890"/>
+          <font name="Arial Black" size="30" style="0"/>
+          <foreground color="-16401664"/>
+          <text value="Money Nexus"/>
+        </properties>
+      </component>
+      <grid id="c8b15" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16777216"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="793fc" class="javax.swing.JButton" binding="saldoButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14211289"/>
+              <font name="Arial Black" size="15" style="0"/>
+              <foreground color="-13255889"/>
+              <text value="Saldo"/>
+            </properties>
+          </component>
+          <component id="c25cb" class="javax.swing.JButton" binding="economiaButton1" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14211289"/>
+              <font name="Arial Black" size="15" style="0"/>
+              <foreground color="-16401664"/>
+              <text value="Economia"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <vspacer id="61e95">
+        <constraints>
+          <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="6" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false"/>
+        </constraints>
+      </vspacer>
+      <grid id="f485d" layout-manager="GridLayoutManager" row-count="2" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+        <margin top="0" left="0" bottom="0" right="0"/>
+        <constraints>
+          <grid row="1" column="2" row-span="1" col-span="2" vsize-policy="3" hsize-policy="3" anchor="0" fill="3" indent="0" use-parent-layout="false"/>
+        </constraints>
+        <properties>
+          <background color="-16318200"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <component id="cb3b1" class="javax.swing.JButton" binding="dividaButton" default-binding="true">
+            <constraints>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <background color="-14211289"/>
+              <font name="Arial Black" size="15" style="0"/>
+              <foreground color="-13255889"/>
+              <text value="Divida"/>
+            </properties>
+          </component>
+          <component id="94af0" class="javax.swing.JButton" binding="extratoButton" default-binding="true">
+            <constraints>
+              <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+            </constraints>
+            <properties>
+              <autoscrolls value="false"/>
+              <background color="-14211289"/>
+              <font name="Arial Black" size="15" style="0"/>
+              <foreground color="-16401664"/>
+              <text value="Extrato"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+    </children>
+  </grid>
+</form>
