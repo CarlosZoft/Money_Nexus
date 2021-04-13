@@ -1,4 +1,4 @@
 package application.Views;
 
-public class divida {
+public class dividaView {
 }
