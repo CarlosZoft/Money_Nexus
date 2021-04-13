@@ -4,12 +4,12 @@ import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Extrato {
+public class ExtratoView {
     private JButton menuButton;
     private JTextArea mostraExtrato;
     private JLabel extrato;
 
-    public Extrato() {
+    public ExtratoView() {
         menuButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
