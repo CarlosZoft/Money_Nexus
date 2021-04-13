@@ -10,11 +10,12 @@ public abstract class Categoria {
 
     private String titulo;
     private double valor;
-    private Date data =  new Date();// Composição:
+    private Date data;
 
     public Categoria(String titulo, double valor) {
         this.titulo = titulo;
         this.valor = valor;
+        this.data = new Date(); // Composição:
     }
     public Categoria() {}
     public double getValor() {
