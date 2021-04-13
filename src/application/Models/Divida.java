@@ -14,4 +14,7 @@ public class Divida extends Categoria {
     public int getTipo() {
         return tipo;
     }
+    public void setTipo(int tipo) {
+        this.tipo = tipo;
+    }
 }
