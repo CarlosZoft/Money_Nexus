@@ -7,15 +7,24 @@ public class Conta {
     private ArrayList<Saldo> saldos = new ArrayList<Saldo>();
     private ArrayList<Divida> dividas = new ArrayList<Divida>();
     private ArrayList<Saldo> historico = new ArrayList<Saldo>();
+    private int[] indexInt = new int[]{0,0,0};
 
     // Crud - saldos
 
-    public ArrayList<Saldo> getSaldos() {
-        return this.saldos;
+    public ArrayList<Double> getSaldos() {
+        ArrayList<Double> aux = new ArrayList<Double>();
+        for(int i = 0; i < getSizeSaldo(); ++i){
+            aux.add(this.saldos.get(i).getValor());
+        }
+        return aux;
     }
 
     public Saldo getSaldo(int index) {
         return this.saldos.get(index);
+    }
+
+    public int getSizeSaldo(){
+        return this.saldos.size();
     }
 
     public void AdicionaSaldo(String titulo, double valor) {
@@ -47,24 +56,32 @@ public class Conta {
 
     // Crud - dividas
 
-    public ArrayList<Divida> getDividas() {
-        return this.dividas;
+    public int getSizeDivida(){
+        return this.dividas.size();
     }
 
-    public ArrayList<Divida> getDividasFixas() {
-        ArrayList<Divida> aux = new ArrayList<Divida>();
-        for (Iterator<Divida> it = dividas.iterator(); it.hasNext(); ) {
-            if (it.next().getTipo() == 1)
-                aux.add(it.next());
+    public ArrayList<Double> getDividas() {
+        ArrayList<Double> aux = new ArrayList<Double>();
+        for(int i = 0; i< getSizeSaldo(); ++i){
+            aux.add(this.saldos.get(i).getValor());
         }
         return aux;
     }
 
-    public ArrayList<Divida> getDividasVariaveis() {
-        ArrayList<Divida> aux = new ArrayList<Divida>();
+    public ArrayList<String> getDividasFixas() {
+        ArrayList<String> aux = new ArrayList<String>();
+        for (Iterator<Divida> it = dividas.iterator(); it.hasNext(); ) {
+            if (it.next().getTipo() == 1)
+                aux.add(it.next().toString());
+        }
+        return aux;
+    }
+
+    public ArrayList<String> getDividasVariaveis() {
+        ArrayList<String> aux = new ArrayList<String>();
         for (Iterator<Divida> it = dividas.iterator(); it.hasNext(); ) {
             if (it.next().getTipo() == 2)
-                aux.add(it.next());
+                aux.add(it.next().toString());
         }
         return aux;
     }
@@ -75,7 +92,7 @@ public class Conta {
 
     public void AdicionaDivida(String titulo, double valor, int tipo) {
         Divida aux = new Divida(titulo, valor, tipo);
-        Saldo aux1 = new Saldo(titulo, valor);
+        Saldo aux1 = new Saldo(titulo, valor*-1);
         this.dividas.add(aux);
         this.historico.add(aux1);
     }
@@ -108,8 +125,13 @@ public class Conta {
 
     // Historico
 
-    public ArrayList<Saldo> getExtrato() {
-        return this.historico;
+    public ArrayList<String> getExtrato() {
+        ArrayList<String> Datas = new ArrayList<String>();
+
+        for(int i = 0 ; i < this.historico.size(); ++i)
+            Datas.add(this.historico.get(i).toString());
+
+        return Datas;
     }
 
     public ArrayList<String> getDates() {
