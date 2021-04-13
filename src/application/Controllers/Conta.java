@@ -115,7 +115,7 @@ public class Conta {
     public ArrayList<String> getDates() {
         ArrayList<String> Datas = new ArrayList<String>();
 
-        for (int i = 0; i < this.historico.size(); ++i) {
+        for(int i = 0; i < this.historico.size(); ++i) {
             String aux = this.historico.get(i).getData();
 
             Datas.add(aux);
