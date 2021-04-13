@@ -41,10 +41,9 @@ public abstract class Categoria {
 
     @Override
     public String toString() {
-        return "Categoria {" +
-                "titulo='" + titulo + '\'' +
-                "Data=" + this.getData() +
-                ", valor=" + valor +
-                '}';
+        return
+                "titulo: " + titulo  +
+                        ", valor: " + valor +
+                ", Data: " + this.getData();
     }
 }
