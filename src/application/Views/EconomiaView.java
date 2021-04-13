@@ -1,4 +1,4 @@
 package application.Views;
 
-public class Economia {
+public class EconomiaView {
 }
