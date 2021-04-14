@@ -4,9 +4,9 @@ import application.Models.*;
 import java.util.*;
 
 public class Conta {
-    private ArrayList<Saldo> saldos = new ArrayList<Saldo>();
-    private ArrayList<Divida> dividas = new ArrayList<Divida>();
-    private ArrayList<Saldo> historico = new ArrayList<Saldo>();
+    private List<Saldo> saldos = new ArrayList<Saldo>();
+    private List<Divida> dividas = new ArrayList<Divida>();
+    private List<Saldo> historico = new ArrayList<Saldo>();
     private int[] indexInt = new int[]{0,0,0};
 
     // Crud - saldos
