@@ -3,7 +3,6 @@ package application.Models;
 
 // Herda class Categoria
 public class Divida extends Categoria {
-
     private int tipo;
 
     public Divida(String titulo, double valor, int tipo) {

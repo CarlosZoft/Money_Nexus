@@ -53,7 +53,7 @@
               <background color="-14211289"/>
               <font name="Arial Black" size="15" style="0"/>
               <foreground color="-16401664"/>
-              <text value="Economia"/>
+              <text value="Poupança"/>
             </properties>
           </component>
         </children>
@@ -81,7 +81,7 @@
               <background color="-14211289"/>
               <font name="Arial Black" size="15" style="0"/>
               <foreground color="-13255889"/>
-              <text value="Divida"/>
+              <text value="Despesa"/>
             </properties>
           </component>
           <component id="94af0" class="javax.swing.JButton" binding="extratoButton" default-binding="true">
