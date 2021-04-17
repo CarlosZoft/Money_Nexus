@@ -4,11 +4,11 @@ import application.Controllers.*;
 public class Valida {
     public FeedBack validaSaldo(String titulo, double valor) {
         FeedBack resposta = new FeedBack("Saldo valido !!", true);
-        if(titulo instanceof String && titulo.length() > 3){
-            if(valor > 0){
+        if(titulo instanceof String && titulo.length() > 2){
+            if(valor > 0) {
                 return resposta;
             }
-            else{
+            else {
                 resposta.setMensagem("Valor invalido !!");
                 resposta.setStatus(false);
                 return resposta;
@@ -24,7 +24,7 @@ public class Valida {
 
     public FeedBack validaTitulo(String titulo) {
         FeedBack resposta = new FeedBack("titulo valido!!", true);
-        if(titulo instanceof String && titulo.length() > 3){
+        if(titulo instanceof String && titulo.length() > 2){
             return resposta;
         }
         else {
@@ -45,12 +45,5 @@ public class Valida {
             return resposta;
         }
     }
-
-
-
-
-
-
-
 
 }
