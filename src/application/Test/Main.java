@@ -1,6 +1,4 @@
-package application.Test;
-
-import application.Views.divida;
+//package application.Test;
 
 import javax.swing.*;
 import java.io.File;
@@ -11,9 +9,9 @@ import java.awt.*;
 //import application.images.*;
 
 
-public class Main {
+//public class Main {
 
-    public static void main(String[] args) throws IOException {
+   // public static void main(String[] args) throws IOException {
 //
 //        int escolhaMenu = 100, op = 0;
 //        double saldo = 0;
@@ -105,13 +103,13 @@ public class Main {
 //        }
 
 
-        divida divida = new divida();
-        JFrame f = new JFrame("divida");
-        f.setContentPane(new divida().panelDivida);
-        f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f.pack();
-        f.setVisible(true);
+        //divida divida = new divida();
+      //  JFrame f = new JFrame("divida");
+        //f.setContentPane(new divida().panelDivida);
+       // f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+       // f.pack();
+       //f.setVisible(true);
 
 
-    }
-}
+//    }
+//}
