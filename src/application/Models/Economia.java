@@ -4,20 +4,18 @@ import application.Models.Categoria;
 
 // Herda class Categoria
 public class Economia extends Categoria {
+    private double Meta;
 
-    private double valorAtual;
-
-    public Economia(String titulo,double valor) {
-
+    public Economia(String titulo,double valor, double meta) {
         super(titulo, valor);
+        this.Meta = meta;
     }
 
-    public double getValorAtual() {
-        return valorAtual;
+    public double getMeta() {
+        return this.Meta;
     }
 
-    public void setValorAtual(double valorAtual) {
-        this.valorAtual = valorAtual;
+    public void setMeta(double valorAtual) {
+        this.Meta = valorAtual;
     }
-
 }
