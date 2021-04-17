@@ -12,7 +12,7 @@ import javax.swing.BorderFactory;
 public class Dividas extends javax.swing.JFrame {
 
     /**
-     * Creates new form Dividas
+     * Creates new form Dividas.
      */
     public Dividas() {
         initComponents();
