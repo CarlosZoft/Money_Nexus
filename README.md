@@ -10,7 +10,11 @@
 Descreva os objetivos do seu projeto e como ele funciona.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento!
+![](menu.png)
+![](saldo.png)
+![](divida.png)
+![](economia.png)
+![](extrato.png)
 
 ## Instalação
 **Linguagem**: Java<br>
