@@ -7,7 +7,10 @@ public class Conta {
     private List<Saldo> saldos = new ArrayList<Saldo>();
     private List<Divida> dividas = new ArrayList<Divida>();
     private List<Saldo> historico = new ArrayList<Saldo>();
+    private List<String> fixas = new ArrayList<String>();
     private int[] indexInt = new int[]{0,0,0};
+    private double saldoTotal = 0;
+    private int DividaTotal = 0;
 
     // Crud - saldos
 
@@ -18,7 +21,9 @@ public class Conta {
         }
         return aux;
     }
-
+    public double getSaldoTotal(){
+        return this.saldoTotal;
+    }
     public Saldo getSaldo(int index) {
         return this.saldos.get(index);
     }
@@ -29,6 +34,7 @@ public class Conta {
 
     public void AdicionaSaldo(String titulo, double valor) {
         Saldo aux = new Saldo(titulo, valor);
+        this.saldoTotal += valor;
         this.saldos.add(aux);
         this.historico.add(aux);
     }
@@ -42,16 +48,22 @@ public class Conta {
         this.saldos.get(index).setTitulo(titulo);
     }
 
-    public void editaValorSaldo(double valor, int index) {
+    public void editaValorSaldo(double valor, int index) { 
+        this.saldoTotal -= this.saldos.get(index).getValor();
         this.saldos.get(index).setValor(valor);
+        this.saldoTotal += valor;
     }
-
+    public void subSaldo(double valor){
+        this.saldoTotal -= valor;
+    }
     public void removeSaldo(int index) {
         this.saldos.remove(index);
+        this.saldoTotal -= this.saldos.get(index).getValor();
     }
 
     public void clearSaldos() {
         this.saldos.clear();
+        this.saldoTotal = 0;
     }
 
     // Crud - dividas
@@ -59,7 +71,9 @@ public class Conta {
     public int getSizeDivida(){
         return this.dividas.size();
     }
-
+    public int getDividaTotal() {
+        return this.DividaTotal;
+    }
     public ArrayList<Double> getDividas() {
         ArrayList<Double> aux = new ArrayList<Double>();
         for(int i = 0; i< getSizeSaldo(); ++i){
@@ -67,34 +81,39 @@ public class Conta {
         }
         return aux;
     }
-
-    public ArrayList<String> getDividasFixas() {
-        ArrayList<String> aux = new ArrayList<String>();
-        for (Iterator<Divida> it = dividas.iterator(); it.hasNext(); ) {
-            if (it.next().getTipo() == 1)
-                aux.add(it.next().toString());
+    public List<String> getDividasFixas() {
+        
+        for (int i = 0 ; i < this.getSizeDivida(); ++i ){
+            Divida auxiliar = this.dividas.get(i);
+            if (auxiliar.getTipo() == 0)
+                    this.fixas.add(auxiliar.toString());
         }
-        return aux;
+        return this.fixas;
+       
     }
 
-    public ArrayList<String> getDividasVariaveis() {
-        ArrayList<String> aux = new ArrayList<String>();
-        for (Iterator<Divida> it = dividas.iterator(); it.hasNext(); ) {
-            if (it.next().getTipo() == 2)
-                aux.add(it.next().toString());
-        }
-        return aux;
+    public List<String> getDividasVariaveis() {
+            List<String> aux = new ArrayList<String>();
+            for (Iterator<Divida> it = this.dividas.iterator(); it.hasNext(); ) {
+                if (it.next().getTipo() == 1)
+                    aux.add(it.next().toString());
+            }
+            return aux;
+      
     }
-
     public Divida getDivida(int index) {
         return this.dividas.get(index);
     }
-
+    public void pagoNaHora(String titulo, double valor){
+        Saldo aux1 = new Saldo(titulo, valor*-1);
+        this.historico.add(aux1);
+    }
     public void AdicionaDivida(String titulo, double valor, int tipo) {
         Divida aux = new Divida(titulo, valor, tipo);
         Saldo aux1 = new Saldo(titulo, valor*-1);
         this.dividas.add(aux);
         this.historico.add(aux1);
+        this.DividaTotal+=valor;
     }
 
     public void editaDivida(String titulo, double valor, int tipo, int index) {
@@ -117,6 +136,7 @@ public class Conta {
 
     public void removeDivida(int index) {
         this.dividas.remove(index);
+        this.DividaTotal-=this.dividas.get(index).getValor();
     }
 
     public void clearDividas() {
