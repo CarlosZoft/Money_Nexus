@@ -292,18 +292,22 @@ public class MainView extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMoneyActionPerformed
+        this.dispose();
         new Saldo().setVisible(true);
     }//GEN-LAST:event_botaoMoneyActionPerformed
 
     private void botaoMoneyRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMoneyRedActionPerformed
+        this.dispose();
         new Dividas().setVisible(true);
     }//GEN-LAST:event_botaoMoneyRedActionPerformed
 
     private void botaoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExtratoActionPerformed
+        this.dispose();
         new Extrato().setVisible(true);
     }//GEN-LAST:event_botaoExtratoActionPerformed
 
     private void botaoSuinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSuinoActionPerformed
+        this.dispose();
         new Economia().setVisible(true);
     }//GEN-LAST:event_botaoSuinoActionPerformed
 

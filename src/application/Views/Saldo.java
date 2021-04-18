@@ -5,17 +5,27 @@
  */
 package application.Views;
 import javax.swing.BorderFactory;
+import application.Controllers.Conta;
+import application.errors.*;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseAdapter;
 /**
  *
  * @author carlos
  */
 public class Saldo extends javax.swing.JFrame {
-
+    Conta conta = new Conta();
+    Valida verify = new Valida();
+  
     /**
      * Creates new form Saldo
      */
     public Saldo() {
         initComponents();
+        jLabel1.setText("R$ " + String.valueOf(conta.getSaldoTotal()));
     }
 
     /**
@@ -38,6 +48,7 @@ public class Saldo extends javax.swing.JFrame {
         btnNexus.setBorder(BorderFactory.createEmptyBorder());
         btnNexus.setContentAreaFilled(false);
         btnNexus.setFocusPainted(false);
+        titulo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(662, 575));
@@ -62,11 +73,27 @@ public class Saldo extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel1.setText("saldo");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
 
         jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField2.setText("Valor");
+        jTextField2.setText("0.0");
+        jTextField2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField2MouseClicked(evt);
+            }
+        });
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Extrato");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setFont(new java.awt.Font("Tahoma", 0, 48)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 0, 0));
@@ -86,50 +113,65 @@ public class Saldo extends javax.swing.JFrame {
             }
         });
 
+        titulo.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        titulo.setText("Titulo");
+        titulo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tituloMouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(136, 136, 136))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(68, 68, 68)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(89, 89, 89)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addComponent(btnNexus, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(72, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(94, 94, 94)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 117, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(117, 117, 117))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(btnNexus, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(186, 186, 186)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(72, 72, 72)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addComponent(titulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(161, 161, 161))
         );
 
@@ -137,7 +179,10 @@ public class Saldo extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -146,19 +191,108 @@ public class Saldo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+        
+    /*jTextField2.addMouseListener(new mouseAdapter(){
+ 
+        public void mouseClicked(MouseEvent e){
+            if(jTextField2.getText().equals("0.0")){
+                jTextField2.setText("");
+            }
+        }
+       
+        
+    });*/
 
+    // Atualiza Saldo Na view 
+    private void atualizaSaldo(){
+        String aux = String.valueOf(conta.getSaldoTotal()).replaceAll(",",".");
+        jLabel1.setText("R$ " + aux);
+    }
+    
+    // Mostrar Mensagem de Erro
+    private void mostraMensagemTela(String frase){
+        JFrame frame = new JFrame("JOptionPane exemplo");
+        JOptionPane.showMessageDialog(frame, frase);
+    }
+    
+    // Botao para adicionar saldo
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        
+        String titulo1 = titulo.getText();
+        String aux = jTextField2.getText().replaceAll(",",".");
+        double saldo = (verify.verificaString(aux)) ? Double.parseDouble(aux) : -1;
+        
+        //Verificando Validade
+        FeedBack result = verify.validaSaldo(titulo1, saldo);
+        try{
+             if(result.isStatus()){
+                conta.AdicionaSaldo(titulo1, saldo);
+                mostraMensagemTela(result.getMensagem());
+                atualizaSaldo();
+            }
+            else{
+                mostraMensagemTela(result.getMensagem());
+            }
+        }
+        catch(Exception e){
+           mostraMensagemTela("Não foi possível adicionar saldo.");
+        }
+  
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    // botao para retirar saldo
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        
+        String titulo1 = titulo.getText();
+        String aux = jTextField2.getText().replaceAll(",",".");
+        double saldo = (verify.verificaString(aux)) ? Double.parseDouble(aux) : -1;
+        
+        //Verificando Validade;
+        FeedBack result = verify.validaSaldo(titulo1, saldo);
+        try{
+            if(result.isStatus()){
+                conta.subSaldo(saldo);
+                result.setMensagem("Saldo retirado com Sucesso!");
+                mostraMensagemTela(result.getMensagem());
+                atualizaSaldo();
+            }
+            else{
+                mostraMensagemTela(result.getMensagem());
+            }
+        }
+        catch(Exception e){
+            mostraMensagemTela("Não foi possível retirar saldo.");
+        }
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
+        MainView teste = new MainView();
+        teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        Extrato teste = new Extrato();
+        teste.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
+           if(jTextField2.getText().equals("0.0")){
+                jTextField2.setText("");
+            }
+    }//GEN-LAST:event_jTextField2MouseClicked
+
+    private void tituloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tituloMouseClicked
+            if(titulo.getText().equals("Titulo")){
+                titulo.setText("");
+            }
+    }//GEN-LAST:event_tituloMouseClicked
+  
     /**
      * @param args the command line arguments
      */
@@ -203,5 +337,6 @@ public class Saldo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField titulo;
     // End of variables declaration//GEN-END:variables
 }

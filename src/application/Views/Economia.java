@@ -124,6 +124,8 @@ public class Economia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
+        MainView teste = new MainView();
+        teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
 
