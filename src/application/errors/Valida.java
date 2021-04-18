@@ -3,7 +3,7 @@ import application.Controllers.*;
 
 public class Valida {
     public FeedBack validaSaldo(String titulo, double valor) {
-        FeedBack resposta = new FeedBack("Saldo valido !!", true);
+        FeedBack resposta = new FeedBack("Saldo Adicionado com Sucesso !!", true);
         if(titulo instanceof String && titulo.length() > 2){
             if(valor > 0) {
                 return resposta;
@@ -45,5 +45,15 @@ public class Valida {
             return resposta;
         }
     }
+    public boolean verificaString(String valor){
+        
+        for(int i = 0 ; i < valor.length(); ++i){
+           char aux = valor.charAt(i);
+           if((aux >= 65 && aux <= 90) || (aux >= 97 && aux <= 122)){
+               return false;
+           }
+        }
+        return true;
+    } 
 
 }
