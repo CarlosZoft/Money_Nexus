@@ -14,4 +14,11 @@ public class Saldo extends Categoria {
     public String getTitulo() {
         return super.getTitulo();
     }
+    public String toString() {
+        return
+                "Data : " + this.getData() + ", Descricao : " 
+                + getTitulo()  + ", Valor : "
+                         + getValor();
+              
+    }
 }
