@@ -10,7 +10,9 @@ import application.errors.*;
 public class Main {
 
     public static void main(String[] args) throws Exception {
-        MainView teste = new MainView();
+        Conta saldo = new Conta();
+        ControllerEconomia poupanca = new ControllerEconomia();
+        MainView teste = new MainView(poupanca, saldo);
         teste.setVisible(true);
     }
 

@@ -19,19 +19,19 @@ public class ControllerEconomia {
 
 
     // METHODS
-    public void AdicionaEconomia(String titulo, double valor, int meta) {
+    public void AdicionaEconomia(String titulo, double valor) {
         String tituloaux = titulo.toLowerCase();
         int flag = 0;
-        for(int i = 0; i<getSize(); ++i){
+        for(int i = 0; i<this.getSize(); ++i){
             Economia tituloPesquisa = this.Eco.get(i);
-            if(tituloPesquisa.getTitulo() == tituloaux) {
+            if(tituloPesquisa.getTitulo().toLowerCase().equals(tituloaux)) {
                 this.Eco.get(i).setValor(tituloPesquisa.getValor() + valor);
                 flag = 1;
                 break;
             }
         }
         if(flag == 0){
-            Economia aux  = new Economia(tituloaux,valor,meta);
+            Economia aux  = new Economia(titulo,valor);
             this.Eco.add(aux);
         }
     }
@@ -48,7 +48,7 @@ public class ControllerEconomia {
     }
 
     public void editaValorEconomia(double valor, int index) {
-        this.Eco.get(index).setValor(valor);
+        this.Eco.get(index).setValor(this.Eco.get(index).getValor()+valor);
     }
 
     public void removeEconomia(int index) {
