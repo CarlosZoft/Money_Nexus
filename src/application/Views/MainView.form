@@ -76,11 +76,11 @@
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <EmptySpace min="0" pref="575" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="587" max="32767" attributes="0"/>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jPanel1" pref="563" max="32767" attributes="0"/>
+                      <Component id="jPanel1" pref="575" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -134,29 +134,34 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="66" green="ff" red="0" type="rgb"/>
                     </Property>
+                    <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[662, 575]"/>
+                    </Property>
                   </Properties>
 
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="194" max="32767" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="-2" pref="176" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="descricaoRed" max="32767" attributes="0"/>
-                                  <Component id="descricao" max="32767" attributes="0"/>
-                                  <Component id="botaoMoney" min="-2" pref="86" max="-2" attributes="0"/>
-                                  <Component id="botaoMoneyRed" pref="0" max="32767" attributes="0"/>
-                                  <Component id="botaoSuino" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="economia" max="32767" attributes="0"/>
-                                  <Component id="botaoExtrato" alignment="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="descricaoExtrato" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="descricaoRed" pref="86" max="32767" attributes="0"/>
+                                      <Component id="descricao" max="32767" attributes="0"/>
+                                      <Component id="economia" max="32767" attributes="0"/>
+                                      <Component id="descricaoExtrato" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="botaoExtrato" pref="97" max="32767" attributes="0"/>
+                                  <Component id="botaoSuino" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="botaoMoneyRed" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="botaoMoney" alignment="0" pref="97" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="287" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>

@@ -6,69 +6,123 @@
 package application.Views;
 import javax.swing.BorderFactory;
 import application.Controllers.Conta;
+import application.Controllers.ControllerEconomia;
 import application.errors.*;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseAdapter;
 import java.util.*;
 import javax.swing.DefaultListModel;
-import javax.swing.JLabel;
-import javax.swing.JList;
-import javax.swing.ListModel;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
+
 /**
  *
  * @author carlos
  */
 public class Dividas extends javax.swing.JFrame {
 
-    
-    Conta divida = new Conta();
+    private ControllerEconomia poupar;
+    private Conta divida;
     Valida verify = new Valida();
    
-
-    
-    
 
     /**
      * Creates new form Dividas.
      */
-    public Dividas() {
+    public Dividas(ControllerEconomia poupar,Conta divida) {
+        this.poupar = poupar;
+        this.divida = divida;
         initComponents();
         this.atualizaSelect();
-        this.atualizarLista();   
+        this.atualizarListaConstrucao();
     }
     
-    private DefaultListModel listModel = new DefaultListModel();
-    private List<String> divida1 = new ArrayList<String>();
+    private DefaultListModel listModelFixas = new DefaultListModel();
+    private DefaultListModel listModelVariaveis = new DefaultListModel();
+    private DefaultListModel model = new DefaultListModel();
    
-    
-    public void atualizarLista() {
-   
-        divida1 = divida.getDividasFixas();
-        if(!divida1.isEmpty()){
-            for (int i = 0 ; i < divida.getSizeDivida(); ++i ){
-                listModel.addElement(divida1.get(i));
-            }
+    /**
+     * Função para atualizarLista quando construir;
+     */
+    public void atualizarListaConstrucao() {
+        
+        // List Fixas
+        listModelFixas.removeAllElements();
+        if(!this.divida.getDividasFixas().isEmpty()){
+            List<String> ver = this.divida.getDividasFixas();
+           for(int i = 0; i<divida.sizeFixas(); ++i ){
+             
+               String qualquer = ver.get(i);
+            
+               if(!qualquer.isBlank())
+                    listModelFixas.addElement(qualquer);
+           }
         }
-        jList1.setModel(listModel);
+        jList1.setModel(listModelFixas);
+        
+        
+        //List Variaveis 
+        
+        listModelVariaveis.removeAllElements();
+        if(!this.divida.getDividasVariaveis().isEmpty()){
+            List<String> ver1 = this.divida.getDividasVariaveis();
+           for(int i = 0; i<divida.sizeVariaveis(); ++i ){
+             
+               String qualquer = ver1.get(i);
+              
+               if(!qualquer.isBlank())
+                    listModelVariaveis.addElement(qualquer);
+           }
+        }
+        jList2.setModel(listModelVariaveis);
     
     }
+
+    /**
+     * Função para Listar Dividas Fixas
+     */
+    public void atualizarListaFixas() {
+        
+        // Atualizando Lista Fixas
+        if(!divida.lastElementFixas().isBlank()){
+            listModelFixas.addElement(divida.lastElementFixas());
+        }
+        
+        jList1.setModel(listModelFixas);
+     
+    }
+
+    /**
+     * Função para Listar Dividas Variaveis
+     */
+    public void atualizaListaVariavel(){
+        
+          // Atualizando Lista Variaveis
+        if(!divida.lastElementVariaveis().isBlank()){
+            listModelVariaveis.addElement(divida.lastElementVariaveis());
+        }
+        
+        jList2.setModel(listModelVariaveis);
+    }
+    
+    /**
+     * Função para Atualizar lista de seleção
+     */
     public void atualizaSelect() {
-        DefaultListModel model = new DefaultListModel();
+        
+        model.removeAllElements();
         model.addElement("Fixa");
         model.addElement("Variavel");
         jList3.setModel(model);
+        
     }
+    /**
+     * Função para Mostrar Erro para o Usuario
+     * @param frase - recebe a frase;
+     */
     private void mostraMensagemTela(String frase){
+        
         JFrame frame = new JFrame("JOptionPane exemplo");
         JOptionPane.showMessageDialog(frame, frase);
+        
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -100,6 +154,8 @@ public class Dividas extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jScrollPane3 = new javax.swing.JScrollPane();
         jList3 = new javax.swing.JList<>();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(662, 575));
@@ -116,6 +172,7 @@ public class Dividas extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 255, 102));
         jButton2.setText("Adicionar");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -131,6 +188,7 @@ public class Dividas extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane2.setViewportView(jList2);
 
         scrollPane1.add(jScrollPane2);
@@ -143,13 +201,14 @@ public class Dividas extends javax.swing.JFrame {
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jList1);
 
         scrollPane2.add(jScrollPane1);
 
-        jTextField1.setText("Titulo");
+        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jTextField2.setText("Valor");
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -162,16 +221,39 @@ public class Dividas extends javax.swing.JFrame {
         jLabel2.setText("Fixa");
         jLabel2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
+        jButton3.setBackground(new java.awt.Color(255, 51, 51));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Remover");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
+        jButton4.setBackground(new java.awt.Color(255, 51, 0));
+        jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Remover");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jList3.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList3.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane3.setViewportView(jList3);
+
+        jLabel3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel3.setForeground(new java.awt.Color(255, 153, 255));
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel3.setText("Descricao");
+
+        jLabel4.setForeground(new java.awt.Color(255, 153, 255));
+        jLabel4.setText("Valor");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -184,9 +266,12 @@ public class Dividas extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)
                         .addComponent(scrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel3)
+                        .addGap(149, 149, 149)
+                        .addComponent(jButton3))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(scrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 194, Short.MAX_VALUE)))
@@ -196,16 +281,21 @@ public class Dividas extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(169, 169, 169)
                         .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField1)
-                                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jTextField1)
+                                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jButton2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(55, 55, 55)
+                                .addComponent(jLabel4))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(220, 220, 220)
                         .addComponent(btnNexus, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(212, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,117 +312,140 @@ public class Dividas extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(scrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(scrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton3)
+                            .addComponent(jButton4)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jButton3)
-                                    .addComponent(jButton4)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(22, 22, 22)
                                 .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGap(10, 10, 10)
+                        .addComponent(jLabel4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(67, Short.MAX_VALUE))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(31, 31, 31))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
 
+   /**
+     * Botao para excluir Divida Variavel
+     * @param evt 
+     */
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        int index = jList2.getSelectedIndex();
+
+        try{
+            if(index == -1){
+                mostraMensagemTela("Selecione a divida fixa a ser excluída");
+            }
+            else{
+                divida.removeDividaVariavel(index);
+                this.atualizarListaConstrucao();
+            }
+        }
+        catch(Exception e){
+            mostraMensagemTela("Não foi possivel excluir despesa, devido a um erro desconhecido");
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    /**
+     * Função para Tomada de providencias a partir de ações 
+     * @param evt  - captura o evento;
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         String titulo1 = jTextField1.getText();
         String aux = jTextField2.getText().replaceAll(",",".");
-        double despesa = (verify.verificaString(aux)) ? Double.parseDouble(aux) : -1; 
+        double despesa = (verify.verificaString(aux)) ? Double.parseDouble(aux) : -1;
         int tipo = jList3.getSelectedIndex();
-        
-        if(tipo == -1){
-            mostraMensagemTela("Selecione o tipo de despesa");
-        }
-        else{
-            FeedBack result = verify.validaSaldo(titulo1, despesa);
+
+        try {
+            if(tipo == -1){
+                mostraMensagemTela("Selecione o tipo de despesa");
+            }
+            else{
+                FeedBack result = verify.validaSaldo(titulo1, despesa);
                 if(result.isStatus()){
-                    
+
                     if(tipo == 0){
                         divida.AdicionaDivida(titulo1, despesa, 0);
-                    }    
+
+                    }
                     else if(tipo == 1){
                         divida.AdicionaDivida(titulo1, despesa, 1);
-                     
-                    }
 
+                    }
                     mostraMensagemTela(result.getMensagem());
                 }
                 else{
                     mostraMensagemTela(result.getMensagem());
                 }
+            }
         }
+        catch(Exception e){
+            mostraMensagemTela("Não foi possivel adicionar despesa, devido a um erro desconhecido");
+        }
+        this.atualizarListaConstrucao();
+        jTextField1.setText("");
+        jTextField2.setText("");
+        this.atualizaSelect();
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
-        MainView teste = new MainView();
+        MainView teste = new MainView(this.poupar,this.divida);
         teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
- 
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        int index = jList1.getSelectedIndex();
+
+        try{
+            if(index == -1){
+                mostraMensagemTela("Selecione a divida fixa a ser excluída");
+            }
+            else{
+                divida.removeDividaFixa(index);
+                this.atualizarListaConstrucao();
+            }
+        }
+        catch(Exception e){
+            mostraMensagemTela("Não foi possivel excluir despesa, devido a um erro desconhecido");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+    
+
     
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Dividas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Dividas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Dividas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Dividas.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        
-        /* Create and display the form */
+    /*public static void main(String args[]) {
+      
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Dividas().setVisible(true);
             }
         });
     }
-
+    */
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNexus;
     private javax.swing.JButton jButton2;
@@ -340,6 +453,8 @@ public class Dividas extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JList<String> jList1;
     private javax.swing.JList<String> jList2;
     private javax.swing.JList<String> jList3;
@@ -353,7 +468,5 @@ public class Dividas extends javax.swing.JFrame {
     private java.awt.ScrollPane scrollPane2;
     // End of variables declaration//GEN-END:variables
 
-    private boolean isEmpty(List<String> dividasFixas) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+  
 }

@@ -5,6 +5,7 @@
  */
 package application.Views;
 
+import application.Controllers.*;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Image;
@@ -19,11 +20,16 @@ import javax.swing.BorderFactory;
  */
 public class MainView extends javax.swing.JFrame {
 
+    private Conta Saldo;
+    private ControllerEconomia poupar;
     /**
      * Creates new form MainView
      */
     
-    public MainView() {
+  
+    public MainView(ControllerEconomia cofrinho, Conta Saldo) {
+        this.Saldo = Saldo;
+        this.poupar = cofrinho;
         initComponents();
     }
     
@@ -127,6 +133,7 @@ public class MainView extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(0, 0, 0));
         jPanel2.setForeground(new java.awt.Color(0, 255, 102));
+        jPanel2.setPreferredSize(new java.awt.Dimension(662, 575));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/application/imagens/logo.png"))); // NOI18N
 
@@ -185,21 +192,22 @@ public class MainView extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
+                .addGap(0, 194, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addGap(176, 176, 176))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(281, 281, 281)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(descricaoRed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(descricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoMoney, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(botaoMoneyRed, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(botaoSuino, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(economia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(botaoExtrato, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(descricaoExtrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(287, Short.MAX_VALUE))
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(descricaoRed, javax.swing.GroupLayout.DEFAULT_SIZE, 86, Short.MAX_VALUE)
+                        .addComponent(descricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(economia, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(descricaoExtrato, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(botaoExtrato, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                    .addComponent(botaoSuino, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoMoneyRed, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(botaoMoney, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,11 +272,11 @@ public class MainView extends javax.swing.JFrame {
         );
         jDesktopPane1Layout.setVerticalGroup(
             jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 575, Short.MAX_VALUE)
+            .addGap(0, 587, Short.MAX_VALUE)
             .addGroup(jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jDesktopPane1Layout.createSequentialGroup()
                     .addContainerGap()
-                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 553, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 575, Short.MAX_VALUE)
                     .addContainerGap()))
         );
 
@@ -293,22 +301,22 @@ public class MainView extends javax.swing.JFrame {
 
     private void botaoMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMoneyActionPerformed
         this.dispose();
-        new Saldo().setVisible(true);
+        new Saldo(this.poupar,this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoMoneyActionPerformed
 
     private void botaoMoneyRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMoneyRedActionPerformed
         this.dispose();
-        new Dividas().setVisible(true);
+        new Dividas(this.poupar, this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoMoneyRedActionPerformed
 
     private void botaoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExtratoActionPerformed
         this.dispose();
-        new Extrato().setVisible(true);
+        new Extrato(this.poupar, this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoExtratoActionPerformed
 
     private void botaoSuinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSuinoActionPerformed
         this.dispose();
-        new Economia().setVisible(true);
+        new Economia(this.poupar, this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoSuinoActionPerformed
 
     

@@ -4,22 +4,60 @@
  * and open the template in the editor.
  */
 package application.Views;
-import java.awt.Component;
 import javax.swing.BorderFactory;
-import javax.swing.JButton;
+import application.Controllers.Conta;
+import application.Controllers.ControllerEconomia;
+import application.errors.*;
+import java.awt.Color;
+import java.awt.Component;
+import javax.swing.JFrame;
+import javax.swing.JOptionPane;
+import java.util.*;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
 /**
  *
  * @author carlos
  */
 public class Extrato extends javax.swing.JFrame {
-
+    private Conta conta;
+    private ControllerEconomia poupar;
     /**
      * Creates new form Extrato
      */
-    public Extrato() {
+    public Extrato(ControllerEconomia poupar,Conta conta) {
+        this.poupar = poupar;
+        this.conta = conta;
         initComponents();
+        this.atualizarListaConstrucao();
     }
-
+    
+    private DefaultListModel listModelFixas = new DefaultListModel();
+    
+    public void atualizarListaConstrucao() {
+        
+        //List Fixas
+        listModelFixas.removeAllElements();
+        if(!this.conta.getExtrato().isEmpty()){
+           List<String> ver = this.conta.getExtrato();
+            for(int i = 0; i<conta.sizeExtrato(); ++i ){
+             
+               String qualquer = ver.get(i);
+               
+               if(!qualquer.isBlank()){
+                    if(conta.verificaValor(i)){
+                        setForeground(Color.RED);
+                    }
+                    else {
+                        setForeground(Color.GREEN);
+                    }
+                   listModelFixas.addElement(qualquer);
+               }
+            }   
+        }
+        jList2.setModel(listModelFixas);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -53,12 +91,15 @@ public class Extrato extends javax.swing.JFrame {
 
         jList2.setBackground(new java.awt.Color(51, 51, 51));
         jList2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jList2.setForeground(new java.awt.Color(255, 255, 255));
+        jList2.setForeground(new java.awt.Color(51, 255, 0));
         jList2.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
+        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList2.setSelectionBackground(new java.awt.Color(204, 0, 204));
+        jList2.setSelectionForeground(new java.awt.Color(0, 0, 0));
         jScrollPane2.setViewportView(jList2);
 
         scrollPane2.add(jScrollPane2);
@@ -101,7 +142,7 @@ public class Extrato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
-        MainView teste = new MainView();
+        MainView teste = new MainView(this.poupar,this.conta);
         teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
