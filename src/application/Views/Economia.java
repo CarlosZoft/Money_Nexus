@@ -20,15 +20,18 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
- *
- * @author carlos
+ * Class responsavel pela economia 
+ * @author Carlos Rafael
+ * @version 1.0.0
  */
 public class Economia extends javax.swing.JFrame {
     private ControllerEconomia poupar;
     private Conta Saldo;
     Valida verify = new Valida();
     /**
-     * Creates new form Economia
+     * 
+     * @param conta recebe conta
+     * @param Saldo recebe saldo
      */
     public Economia(ControllerEconomia conta,Conta Saldo) {
         this.Saldo = Saldo;
@@ -208,6 +211,9 @@ public class Economia extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    /**
+     * Metodo responsavel por atualiza a lista
+     */
     public void atualizarListaConstrucao() {
         
         // List Fixas
@@ -228,18 +234,27 @@ public class Economia extends javax.swing.JFrame {
     }
 
 
-    // Mostrar Mensagem de Erro
+    /**
+     * Metodo responsavel por mostrar mensagens de erro para o usuario
+     * @param frase 
+     */
     private void mostraMensagemTela(String frase){
         JFrame frame = new JFrame("JOptionPane exemplo");
         JOptionPane.showMessageDialog(frame, frase);
     }
-    
+    /**
+     * Metodo para adicionar função ao botao MoneyNexus
+     * @param evt 
+     */
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
         MainView teste = new MainView(this.poupar, this.Saldo);
         teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
-
+    /**
+     * Metodo para adicionar economia a partir da interação do usuario
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         String titulo1 = jTextField1.getText();
         String aux = jTextField2.getText().replaceAll(",",".");
@@ -272,10 +287,13 @@ public class Economia extends javax.swing.JFrame {
             
         }
         catch(Exception e){
-            mostraMensagemTela("Nao foi possivel adicionar Economia");
+            mostraMensagemTela(verify.Erro(10));
         }
                         this.atualizaCampos();
     }//GEN-LAST:event_jButton2ActionPerformed
+    /**
+     * Metodo responsavel por atualizar campos da view
+     */
     private void atualizaCampos () {
                this.atualizarListaConstrucao();
                jTextField1.setText("");
@@ -284,7 +302,10 @@ public class Economia extends javax.swing.JFrame {
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
+    /**
+     * Metodo responsavel por remover economia a partir da interação do usuario 
+     * @param evt 
+     */
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         int index = jList1.getSelectedIndex();
         try{
@@ -295,26 +316,16 @@ public class Economia extends javax.swing.JFrame {
             }
             else {
                     poupar.removeEconomia(index);
-                    mostraMensagemTela("Economia removida com sucesso");
+                    mostraMensagemTela(verify.Others(2));
             }
         }
         catch(Exception e) {
-            mostraMensagemTela("Nao foi possivel excluir economia");
+            mostraMensagemTela(verify.Erro(11));
         }
         this.atualizaCampos();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-     
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Economia().setVisible(true);
-            }
-        });
-    }*/
+  
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNexus;

@@ -13,9 +13,11 @@ import javax.swing.JOptionPane;
 import java.util.*;
 import javax.swing.DefaultListModel;
 
+
 /**
- *
- * @author carlos
+ * Classe responsavel pela view das dividas fixas e variaveis
+ * @author Helder Lourenço
+ * @version 1.0.0
  */
 public class Dividas extends javax.swing.JFrame {
 
@@ -25,7 +27,9 @@ public class Dividas extends javax.swing.JFrame {
    
 
     /**
-     * Creates new form Dividas.
+     * 
+     * @param poupar Recebe ControllerEconomia
+     * @param divida Recebe Conta
      */
     public Dividas(ControllerEconomia poupar,Conta divida) {
         this.poupar = poupar;
@@ -116,7 +120,7 @@ public class Dividas extends javax.swing.JFrame {
     }
     /**
      * Função para Mostrar Erro para o Usuario
-     * @param frase - recebe a frase;
+     * @param frase - recebe de erro
      */
     private void mostraMensagemTela(String frase){
         
@@ -354,7 +358,7 @@ public class Dividas extends javax.swing.JFrame {
 
         try{
             if(index == -1){
-                mostraMensagemTela("Selecione a divida fixa a ser excluída");
+                mostraMensagemTela(verify.Erro(2));
             }
             else{
                 divida.removeDividaVariavel(index);
@@ -362,7 +366,7 @@ public class Dividas extends javax.swing.JFrame {
             }
         }
         catch(Exception e){
-            mostraMensagemTela("Não foi possivel excluir despesa, devido a um erro desconhecido");
+            mostraMensagemTela(verify.Erro(3));
         }
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -379,7 +383,7 @@ public class Dividas extends javax.swing.JFrame {
 
         try {
             if(tipo == -1){
-                mostraMensagemTela("Selecione o tipo de despesa");
+                mostraMensagemTela(verify.Erro(4));
             }
             else{
                 FeedBack result = verify.validaSaldo(titulo1, despesa);
@@ -387,7 +391,7 @@ public class Dividas extends javax.swing.JFrame {
 
                     if(tipo == 0){
                         divida.AdicionaDivida(titulo1, despesa, 0);
-
+                        divida.subSaldoTotal(despesa);
                     }
                     else if(tipo == 1){
                         divida.AdicionaDivida(titulo1, despesa, 1);
@@ -401,52 +405,46 @@ public class Dividas extends javax.swing.JFrame {
             }
         }
         catch(Exception e){
-            mostraMensagemTela("Não foi possivel adicionar despesa, devido a um erro desconhecido");
+            mostraMensagemTela(verify.Erro(5));
         }
         this.atualizarListaConstrucao();
         jTextField1.setText("");
         jTextField2.setText("");
         this.atualizaSelect();
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    /**
+     * Metodo para capturar e mudar janela
+     * @param evt 
+     */
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
         MainView teste = new MainView(this.poupar,this.divida);
         teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    /**
+     * Metodo para capturar evento e remover divida fixa
+     * @param evt 
+     */
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {                                         
         int index = jList1.getSelectedIndex();
 
         try{
             if(index == -1){
-                mostraMensagemTela("Selecione a divida fixa a ser excluída");
+                mostraMensagemTela(verify.Erro(6));
             }
             else{
                 divida.removeDividaFixa(index);
+                divida.sumSaldoTotal(divida.getDivida(index).getValor());
                 this.atualizarListaConstrucao();
             }
         }
         catch(Exception e){
-            mostraMensagemTela("Não foi possivel excluir despesa, devido a um erro desconhecido");
+            mostraMensagemTela(verify.Erro(7));
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }
     
 
-    
-    /**
-     * @param args the command line arguments
-     */
-    /*public static void main(String args[]) {
-      
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dividas().setVisible(true);
-            }
-        });
-    }
-    */
-    // Variables declaration - do not modify//GEN-BEGIN:variables
+
     private javax.swing.JButton btnNexus;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -466,7 +464,7 @@ public class Dividas extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField2;
     private java.awt.ScrollPane scrollPane1;
     private java.awt.ScrollPane scrollPane2;
-    // End of variables declaration//GEN-END:variables
+   
 
   
 }

@@ -14,8 +14,9 @@ import javax.swing.JTextField;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseAdapter;
 /**
- *
- * @author carlos
+ * Classe responsavel pelo saldo do usuario
+ * @author Carlos Rafael
+ * @version 1.0.0
  */
 public class Saldo extends javax.swing.JFrame {
     private Conta conta;
@@ -23,7 +24,9 @@ public class Saldo extends javax.swing.JFrame {
     Valida verify = new Valida();
   
     /**
-     * Creates new form Saldo
+     * 
+     * @param poupar recebe ControllerEconomia
+     * @param Saldo  recebe Conta
      */
     public Saldo(ControllerEconomia poupar,Conta Saldo) {
         this.poupar = poupar;
@@ -220,31 +223,29 @@ public class Saldo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
-    /*jTextField2.addMouseListener(new mouseAdapter(){
- 
-        public void mouseClicked(MouseEvent e){
-            if(jTextField2.getText().equals("0.0")){
-                jTextField2.setText("");
-            }
-        }
-       
-        
-    });*/
 
-    // Atualiza Saldo Na view 
+
+    /**
+     * Metodo responsavel por atualizar Saldo 
+     */
     private void atualizaSaldo(){
         String aux = String.valueOf(conta.getSaldoTotal()).replaceAll(",",".");
         jLabel1.setText("R$ " + aux);
     }
     
-    // Mostrar Mensagem de Erro
+    /**
+     * Metodo responsavel por mostrar mensagem de erro para o usuario 
+     * @param frase 
+     */
     private void mostraMensagemTela(String frase){
         JFrame frame = new JFrame("JOptionPane exemplo");
         JOptionPane.showMessageDialog(frame, frase);
     }
     
-    // Botao para adicionar saldo
+    /**
+     * Metodo responsavel por adicionar novo saldo 
+     * @param evt 
+     */
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         
         String titulo1 = titulo.getText();
@@ -264,11 +265,14 @@ public class Saldo extends javax.swing.JFrame {
             }
         }
         catch(Exception e){
-           mostraMensagemTela("Não foi possível adicionar saldo.");
+           mostraMensagemTela(verify.Erro(8));
         }
   
     }//GEN-LAST:event_jButton2ActionPerformed
-    // botao para retirar saldo
+    /**
+     * Metodo responsavel por subtrair do saldo do usuario
+     * @param evt 
+     */
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         
         String titulo1 = titulo.getText();
@@ -285,7 +289,7 @@ public class Saldo extends javax.swing.JFrame {
                 else {
                     conta.subSaldo(saldo);
                 }
-                result.setMensagem("Saldo retirado com Sucesso!");
+                result.setMensagem(verify.Others(1));
                 mostraMensagemTela(result.getMensagem());
                 atualizaSaldo();
             }
@@ -294,51 +298,52 @@ public class Saldo extends javax.swing.JFrame {
             }
         }
         catch(Exception e){
-            mostraMensagemTela("Não foi possível retirar saldo.");
+            mostraMensagemTela(verify.Erro(9));
         }
         
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    /**
+     * Metodo responsavel chamar a main view
+     * @param evt 
+     */
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
         MainView teste = new MainView(this.poupar,this.conta);
         teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
-
+    /**
+     * Metodo responsavel por chamar a view extrato
+     * @param evt 
+     */
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         Extrato teste = new Extrato(this.poupar,this.conta);
         teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    
     private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField2ActionPerformed
-
+    /**
+     * Metodo responsavel por limpar campo quando clicado
+     * @param evt 
+     */
     private void jTextField2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField2MouseClicked
            if(jTextField2.getText().equals("Valor")){
                 jTextField2.setText("");
             }
     }//GEN-LAST:event_jTextField2MouseClicked
-
+    /**
+    * Metodo responsavel por limpar campo quando clicado
+    * @param evt 
+    */
     private void tituloMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tituloMouseClicked
             if(titulo.getText().equals("Descricao")){
                 titulo.setText("");
             }
     }//GEN-LAST:event_tituloMouseClicked
   
-    /**
-     * @param args the command line arguments
-     */
-   /* public static void main(String args[]) {
-    
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Saldo(this.conta).setVisible(true);
-            }
-        });
-    }
-*/
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnNexus;
     private javax.swing.JButton jButton2;

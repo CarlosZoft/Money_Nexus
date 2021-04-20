@@ -150,12 +150,10 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="281" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="descricaoRed" pref="86" max="32767" attributes="0"/>
-                                      <Component id="descricao" max="32767" attributes="0"/>
-                                      <Component id="economia" max="32767" attributes="0"/>
-                                      <Component id="descricaoExtrato" max="32767" attributes="0"/>
-                                  </Group>
+                                  <Component id="descricaoRed" pref="86" max="32767" attributes="0"/>
+                                  <Component id="descricao" max="32767" attributes="0"/>
+                                  <Component id="economia" max="32767" attributes="0"/>
+                                  <Component id="descricaoExtrato" max="32767" attributes="0"/>
                                   <Component id="botaoExtrato" pref="97" max="32767" attributes="0"/>
                                   <Component id="botaoSuino" alignment="0" max="32767" attributes="0"/>
                                   <Component id="botaoMoneyRed" alignment="0" max="32767" attributes="0"/>

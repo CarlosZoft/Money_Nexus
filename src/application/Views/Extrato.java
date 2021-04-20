@@ -17,15 +17,18 @@ import javax.swing.DefaultListCellRenderer;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 /**
- *
- * @author carlos
+ * Classe responsavel por extrato do usuario 
+ * @author Helder Lourenço
+ * @version 1.0.0
  */
 public class Extrato extends javax.swing.JFrame {
     private Conta conta;
     private ControllerEconomia poupar;
-    /**
-     * Creates new form Extrato
-     */
+   /**
+    * 
+    * @param poupar recebe controllerEconomia
+    * @param conta recebe Conta
+    */
     public Extrato(ControllerEconomia poupar,Conta conta) {
         this.poupar = poupar;
         this.conta = conta;
@@ -34,7 +37,9 @@ public class Extrato extends javax.swing.JFrame {
     }
     
     private DefaultListModel listModelFixas = new DefaultListModel();
-    
+    /**
+     * Metodo responsavel por atualizar lista e componentes
+     */
     public void atualizarListaConstrucao() {
         
         //List Fixas
@@ -56,7 +61,7 @@ public class Extrato extends javax.swing.JFrame {
                }
             }   
         }
-        jList2.setModel(listModelFixas);
+        ListaVariaveis.setModel(listModelFixas);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -74,7 +79,7 @@ public class Extrato extends javax.swing.JFrame {
         btnNexus.setFocusPainted(false);
         scrollPane2 = new java.awt.ScrollPane();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList<>();
+        ListaVariaveis = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -89,18 +94,18 @@ public class Extrato extends javax.swing.JFrame {
             }
         });
 
-        jList2.setBackground(new java.awt.Color(51, 51, 51));
-        jList2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jList2.setForeground(new java.awt.Color(51, 255, 0));
-        jList2.setModel(new javax.swing.AbstractListModel<String>() {
+        ListaVariaveis.setBackground(new java.awt.Color(51, 51, 51));
+        ListaVariaveis.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        ListaVariaveis.setForeground(new java.awt.Color(51, 255, 0));
+        ListaVariaveis.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
             public int getSize() { return strings.length; }
             public String getElementAt(int i) { return strings[i]; }
         });
-        jList2.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jList2.setSelectionBackground(new java.awt.Color(204, 0, 204));
-        jList2.setSelectionForeground(new java.awt.Color(0, 0, 0));
-        jScrollPane2.setViewportView(jList2);
+        ListaVariaveis.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        ListaVariaveis.setSelectionBackground(new java.awt.Color(204, 0, 204));
+        ListaVariaveis.setSelectionForeground(new java.awt.Color(0, 0, 0));
+        jScrollPane2.setViewportView(ListaVariaveis);
 
         scrollPane2.add(jScrollPane2);
 
@@ -140,21 +145,21 @@ public class Extrato extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo responsavel por retornar ao menu a partir da interaçao
+     * @param evt 
+     */
     private void btnNexusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNexusActionPerformed
         MainView teste = new MainView(this.poupar,this.conta);
         teste.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnNexusActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-
+ 
 private javax.swing.JButton jButton1;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JList<String> ListaVariaveis;
     private javax.swing.JButton btnNexus;
-    private javax.swing.JList<String> jList2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane2;
     private java.awt.ScrollPane scrollPane2;

@@ -15,24 +15,31 @@ import java.awt.event.MouseEvent;
 import javax.swing.BorderFactory;
 
 /**
- *
- * @author carlos
+ * Classe responsavel pela view do menu
+ * @author Carlos Rafael
+ * @version 1.0.0
  */
 public class MainView extends javax.swing.JFrame {
 
     private Conta Saldo;
     private ControllerEconomia poupar;
-    /**
-     * Creates new form MainView
-     */
     
-  
+    
+    
+   /**
+    * 
+    * @param cofrinho Recebe ControllerEconomia
+    * @param Saldo Recebe Conta
+    */
     public MainView(ControllerEconomia cofrinho, Conta Saldo) {
         this.Saldo = Saldo;
         this.poupar = cofrinho;
         initComponents();
     }
     
+    /**
+     * Metodo para setar titulo ao perceber interação do usuario
+     */
     MouseAdapter mouseListener = new MouseAdapter() {
 		public void mouseEntered(MouseEvent e) {	 
                     descricao.setText("Saldo");
@@ -41,7 +48,9 @@ public class MainView extends javax.swing.JFrame {
                     descricao.setText(" ");
 		}
     };
-    
+     /**
+     * Metodo para setar titulo ao perceber interação do usuario
+     */
     MouseAdapter mouseListenerRed = new MouseAdapter() {
             
 		public void mouseEntered(MouseEvent e) {	 
@@ -52,7 +61,9 @@ public class MainView extends javax.swing.JFrame {
 		}
                 
     };
-    
+     /**
+     * Metodo para setar titulo ao perceber interação do usuario
+     */
     MouseAdapter mouseListenerSuino = new MouseAdapter() {
         int a = 0;
 		public void mouseEntered(MouseEvent e) {	 
@@ -69,7 +80,9 @@ public class MainView extends javax.swing.JFrame {
                     }
 		}
     };
-    
+     /**
+     * Metodo para setar titulo ao perceber interação do usuario
+     */
     MouseAdapter mouseListenerExtrato = new MouseAdapter() {
 		public void mouseEntered(MouseEvent e) {	 
                     descricaoExtrato.setText("Extrato");
@@ -298,32 +311,40 @@ public class MainView extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    /**
+     * Metodo para trocar Janela após capturar o evento de click
+     * @param evt 
+     */
     private void botaoMoneyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMoneyActionPerformed
         this.dispose();
         new Saldo(this.poupar,this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoMoneyActionPerformed
-
+     /**
+     * Metodo para trocar Janela após capturar o evento de click
+     * @param evt 
+     */
     private void botaoMoneyRedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoMoneyRedActionPerformed
         this.dispose();
         new Dividas(this.poupar, this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoMoneyRedActionPerformed
-
+     /**
+     * Metodo para trocar Janela após capturar o evento de click
+     * @param evt 
+     */
     private void botaoExtratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoExtratoActionPerformed
         this.dispose();
         new Extrato(this.poupar, this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoExtratoActionPerformed
-
+     /**
+     * Metodo para trocar Janela após capturar o evento de click
+     * @param evt 
+     */
     private void botaoSuinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSuinoActionPerformed
         this.dispose();
         new Economia(this.poupar, this.Saldo).setVisible(true);
     }//GEN-LAST:event_botaoSuinoActionPerformed
 
-    
-    /**
-     * @param args the command line arguments
-     */
-
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botaoExtrato;
     private javax.swing.JButton botaoMoney;
