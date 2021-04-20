@@ -4,21 +4,22 @@ import java.util.ArrayList;
 import application.Models.*;
 import java.time.LocalDate;
 import java.util.Locale;
-
 /**
- * Controller Para Economias
- *
- * @author  Carlos Rafael
- * @version 1.0
- * @since   2021-03-16
+ * 
+ * @author Helder Lourenço
+ * @version 1.0.0
  */
 public class ControllerEconomia {
 
-    // LIST ECONOMIAS
+   
     private ArrayList <Economia> Eco = new ArrayList<Economia>();
 
 
-    // METHODS
+   /**
+    * Metodo para adicionar nova economia ou somar em uma já existente;
+    * @param titulo titulo da economia
+    * @param valor valor da economia
+    */
     public void AdicionaEconomia(String titulo, double valor) {
         String tituloaux = titulo.toLowerCase();
         int flag = 0;
@@ -35,33 +36,58 @@ public class ControllerEconomia {
             this.Eco.add(aux);
         }
     }
-
+    /**
+     * Metodo para editar economia
+     * @param titulo titulo da economia 
+     * @param valor valor da economia
+     * @param index indice na lista
+     */
     public void editaEconomia(String titulo, double valor, int index) {
         String tituloaux = titulo.toLowerCase();
         this.Eco.get(index).setTitulo(tituloaux);
         this.Eco.get(index).setValor(valor);
     }
-
+    /**
+     * Metodo para editar economia
+     * @param titulo titulo da economia
+     * @param index indice na lista
+     */
     public void editaTituloEconomia(String titulo, int index) {
         String tituloaux = titulo.toLowerCase();
         this.Eco.get(index).setTitulo(tituloaux);
     }
-
+    /**
+     * Metodo para editar economia
+     * @param valor valor da economia
+     * @param index indice na lista
+     */
     public void editaValorEconomia(double valor, int index) {
         this.Eco.get(index).setValor(this.Eco.get(index).getValor()+valor);
     }
-
+    /**
+     * Metodo para remover economia especifica
+     * @param index indice na lista
+     */
     public void removeEconomia(int index) {
         this.Eco.remove(index);
     }
-
+    /**
+     * Metodo para limpar lista de economias 
+     */
     public void clearEconomia() {
         this.Eco.clear();
     }
+    /**
+     * Metodos para pegar tamanho da lista de economias
+     * @return tamanho da lista
+     */
     public int getSize() {
         return this.Eco.size();
     }
-
+    /**
+     * Metodo para obter todas as toStrings de Economia
+     * @return Lista com metodos toString
+     */
     public ArrayList<String> getAllEconomias(){
         ArrayList<String> aux = new ArrayList<String>();
 
@@ -70,7 +96,10 @@ public class ControllerEconomia {
         }
         return aux;
     }
-
+    /**
+     * Metodo para obter todos os titulos de economia
+     * @return lista com titulos de economias adicionadas
+     */
     public ArrayList<String> getTitulos(){
 
         ArrayList <String> aux = new ArrayList<String>();
@@ -81,7 +110,10 @@ public class ControllerEconomia {
 
         return aux;
     }
-
+    /**
+     * Metodo para obter lista de Valores das economias adicionadas
+     * @return Lista de valores das economias adicionadas
+     */
     public ArrayList<Double> getValores(){
 
         ArrayList <Double> aux = new ArrayList<Double>();
@@ -92,13 +124,19 @@ public class ControllerEconomia {
 
         return aux;
     }
-
-
-
+    /**
+     * Metodo que obtem titulo de economia especifico
+     * @param index indice na lista
+     * @return Titulo especifico
+     */
     public String getTitulo(int index) {
         return this.Eco.get(index).getTitulo();
-    }
-
+    }   
+    /**
+     * Metodo que obtem o valor de economia especifico
+     * @param index indice na lista
+     * @return retorna valor especifico da economia
+     */
     public double getValor(int index) {
         return this.Eco.get(index).getValor();
     }
