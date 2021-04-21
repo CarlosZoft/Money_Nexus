@@ -17,4 +17,4 @@ Aplicativo desktop para controle de entrada e saida de caixa - feito durante a d
 **Linguagem**: Java<br>
 **Framework**: Java Swing<br>
 Necessária a Instalação do JDK(preferência 15);
-Necessária IDE capaz de renderizar
+
