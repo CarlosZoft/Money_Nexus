@@ -36,12 +36,14 @@ public class Valida {
             return "Nao foi possivel adicionar Economia";
         if(tipo==11)
             return "Nao foi possivel excluir economia";
+        if(tipo==12)
+            return "Despesa Adicionada com sucesso";
         return "nada";    
     }
     
     /**
      * Metodo responsavel por organizar mensagens
-     * @param tipo tipo de situação
+     * @param tipo tipo de situaï¿½ï¿½o
      * @return Mensagem auxiliar 
      */
     public String Others (int tipo){

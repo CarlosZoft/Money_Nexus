@@ -10,7 +10,7 @@ public class FeedBack {
     
     /**
      * Metodo construtor
-     * @param Mensagem Descrição do feedback
+     * @param Mensagem Descricao do feedback
      * @param Status Status do feedback True ou False 
      */
     public FeedBack(String Mensagem, Boolean Status){
