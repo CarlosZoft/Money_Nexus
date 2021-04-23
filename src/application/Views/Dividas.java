@@ -397,7 +397,7 @@ public class Dividas extends javax.swing.JFrame {
                         divida.AdicionaDivida(titulo1, despesa, 1);
 
                     }
-                    mostraMensagemTela(result.getMensagem());
+                    mostraMensagemTela(verify.Erro(12));
                 }
                 else{
                     mostraMensagemTela(result.getMensagem());
