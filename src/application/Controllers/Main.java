@@ -24,7 +24,7 @@ public class Main {
        try{ 
             Conta saldo = new Conta();
             ControllerEconomia poupanca = new ControllerEconomia();
-            MainView teste = new MainView(poupanca, saldo);
+            DicaRapida teste = new DicaRapida(poupanca, saldo);
             teste.setVisible(true);
        }
        catch(Exception e){
