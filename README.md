@@ -10,7 +10,7 @@
 Aplicativo desktop para controle de entrada e saida de caixa - feito durante a disciplina de Orientação a Objetos
 
 ## Screenshots
-![](ImagesExample/menu.png)
+![](ImagesExample/MenuSemBorda.png)
 
 
 ## Instalação
@@ -18,3 +18,5 @@ Aplicativo desktop para controle de entrada e saida de caixa - feito durante a d
 **Framework**: Java Swing<br>
 Necessária a Instalação do JDK(preferência 15);
 
+## Manual e Agradecimentos
+[Manual](Manual_Money_Nexus.pdf)
